@@ -14,8 +14,23 @@ while q > 0:
         print patern
         all_paterns = [S[i:i+diff]  for i  in range(0,len(S)) if len(patern) == len(S[i:i+diff])]
         print all_paterns
+        yyeah = False
         for ptrn in all_paterns:
-
+            for i in range (len(patern)):
+                for j in range(len(ptrn)):
+                  if i<>j:
+                    if  patern[i] == patern[j]:
+                        if ptrn[i] <>  ptrn[j]:
+                            yyeah = False
+                            break
+                    else:
+                        if ptrn[i] == ptrn[j]:
+                            yyeah = False
+                            break
+                    yyeah = True
+            if yyeah:
+                cont = cont + 1
+                yyeah = False
     print cont
-    q = q - 1
 
+    q = q - 1
