@@ -1,64 +1,47 @@
-import math
+#https://www.codewars.com/kata/sum-by-factors/python
+def prime_factors(n):
+    if n<0:
+        n = n * -1
+    i = 2
+    factors = []
+    while i * i <= n:
+        if n % i:
+            i += 1
+        else:
+            n //= i
+            factors.append(i)
+    if n > 1:
+        factors.append(n)
+    return factors
+
+from collections import defaultdict
 
 def sum_for_list(lst):
-    factors = {}
+    fctr = []
+    common_factos = defaultdict(list)
     for item in lst:
-        if item >3:
-            print sieve(item)
-        else:
-            factors[item]=[item]
-    pass
+        tt = prime_factors(item)
+        if tt:
+            fctr.append(tt)
+            for ele in set(tt):
+                common_factos[ele].append(item)
 
+    # Find common element in list of list
+    if fctr:
+        result = set(fctr[0])
+        for s in fctr[1:]:
+            result = result.union(s)
+    fr = []
+    for ky in sorted(common_factos.keys()):
+        if ky in result:
+            fr.append([ky,sum(common_factos[ky])])        
+    return  fr
 
-
-
-def factors(n):
-
-
-def sieve(n):
-    size = n//2
-    sieve = [1]*size
-    limit = int(n**0.5)
-    for i in range(1,limit):
-        if sieve[i]:
-            val = 2*i+1
-            tmp = ((size-1) - i)//val
-            sieve[i+val::val] = [0]*tmp
-    return [2] + [i*2+1 for i, v in enumerate(sieve) if v and i>0]
-
-# def sieve(n):
-#     all_nos =[]
-#     all_nos.insert(0,False)
-#     all_nos.insert(1,False)
-#     all_nos[2:] = [i for i in range(2,n)]
-#     limit =  int(math.sqrt(n))
-#     no=2
-#     print all_nos
-
-
-
-
-
-# def sieve(n):
-#     return set(reduce(list.__add__,
-#                 ([i, n//i] for i in range(1, int(n**0.5) + 1) if n % i == 0)))
-# def sieve(n):
-#     if n %2 ==0 :
-#         n = n/2
-#     else
-#
-#
-#     temp = [i for i in range(2,n)]
-#     limt = int(math.sqrt(n))
-#     # print  temp
-#     # print limt
-#
-#
-#     for no in range(2,limt+1):
-#         for index,value in enumerate(temp):
-#             if value%no ==0 :
-#                 temp[index]=0
-#         # print index, " === >",value
-#     print temp
-a = [12]
-sum_for_list(a)
+if '__main__' == __name__:
+    a = [12, 15]
+    # print sum_for_list(a)
+    # print sum_for_list( [15, 30, -45] )
+    # print sum_for_list([15, 21, 24, 30, -45])
+    print sum_for_list([-29804, -4209, -28265, -72769, -31744])
+    # print prime_factors(45)
+    # [[2, 54], [3, 45], [5, 0], [7, 21]]
