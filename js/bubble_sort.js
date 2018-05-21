@@ -1,6 +1,6 @@
 /*
-Bruteforce Application for sorting problem is to compare adjacenet elements of the list and exchange 
-them if they are ourt of order.By doing repatedly we end up "bubbling up" largest lement to last position 
+Bruteforce Application for sorting problem is to compare adjacent elements of the list and exchange 
+them if they are ourt of order.By doing repatedly we end up "bubbling up" largest element to last position 
 on the list
  */
 
@@ -15,9 +15,8 @@ var bubble_sort = function(arr) {
             }
         }
     }
-    return arr
-
+    return arr;
 }
 
 var a = [2, 3, 1, 5, 4, 9, 16];
-bubble_sort(a)
+bubble_sort(a);
