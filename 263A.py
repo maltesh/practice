@@ -1,21 +1,13 @@
-# https://codeforces.com/contest/263/problem/A
-
+# https://codeforces.com/problemset/problem/263/A
 n = 5
-t = 0 
-temp = []
+k = 0
+rw = 0
+col = 0
+while k < n:
+    rws = map(int, raw_input().split(' '))
+    if rws.count(1)>0 :
+        rw = k
+        col = rws.index(1)
+    k = k+1
 
-r , c = 0 , 0
-
-def ff (x) :
-    return 0 if x is '0' else 1
-
-while t  < n:     
-     row = map (ff,raw_input().split( ' '))     
-     temp.append(row)
-     for idx, val in  enumerate(row):
-         if val : 
-             r , c = t , idx         
-     t = t + 1
-    
-
-print abs(r-2)+ abs(2-c)
+print (abs(2-rw) + abs(2- col))
